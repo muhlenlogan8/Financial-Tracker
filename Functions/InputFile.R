@@ -1,9 +1,11 @@
 ################################################################################
 
-### This file houses the server elements of the app
+### This file houses functions related to the app's input file
 
 ################################################################################
 
-server <- function(input, output, session) {
-  
+
+readInputFile <- function() {
+  data <- read_excel("Data/TestFinancialData.xlsx")
+  return(data)
 }
