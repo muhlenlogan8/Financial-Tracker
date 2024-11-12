@@ -1,11 +1,7 @@
 library(shiny)
-library(readxl)
-library(tidyverse)
-library(shinyWidgets)
-library(shinythemes)
-library(shinydashboard)
-library(shinyjs)
-library(formattable)
+library(DT)
+library(ggplot2)
+library(dplyr)
 
-
-source("Functions/InputFile.R")
+# Load functions file
+source("Functions/Functions.R")

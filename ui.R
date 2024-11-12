@@ -1,36 +1,31 @@
-################################################################################
+###################
+### UI Elements ###
+###################
 
-### This file houses the ui elements of the app
-
-################################################################################
-
-
-ui <- shinyUI({
-  dashboardPage(
-    dashboardHeader(title = "Financial Tracker"),
-    dashboardSidebar(
-      sidebarMenu(
-        menuItem("Input File", tabName = "inputDataTab"),
-        menuItem("Home Dashboard", tabName = "homeDashboardTab"),
-        menuItem("Data Table", tabName = "dataTableTab")
-      )
+ui <- fluidPage(
+  titlePanel("Finance Dashboard"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      fileInput("file", "Upload CSV", accept = ".csv"),
+      helpText("Upload a CSV file"),
+      downloadButton("downloadFile", "Download Dummy Data"),
+      
+      # Multi-select dropdown for selecting months
+      uiOutput("monthDropdown"),
+      
+      # Radio buttons for chart selection
+      radioButtons("chartType", "Select Chart Type:",
+                   choices = c("Bar Chart", "Pie Chart", "Line Chart"),
+                   selected = "Bar Chart")
     ),
-    dashboardBody(
-      tabItems(
-        tabItem("inputDataTab",
-                fileInput("inputFile", "Input .xlsx File", accept = ".xlsx")
-        ),
-        tabItem("homeDashboardTab",
-                fluidRow(
-                  valueBoxOutput("currentBalance"),
-                  valueBoxOutput("incomeToDate"),
-                  valueBoxOutput("debitsToDate")
-                )
-        ),
-        tabItem("dataTableTab",
-                formattableOutput("formattableTable")
-        )
+    
+    mainPanel(
+      tabsetPanel(
+        tabPanel("Table", DTOutput("dataTable")),
+        tabPanel("Charts", plotOutput("incomeExpensePlot")),
+        tabPanel("Statistics", verbatimTextOutput("summaryStats"))
       )
     )
   )
-})
+)
