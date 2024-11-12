@@ -1,5 +1,8 @@
 # Financial Tracker
 
+
+### Reworking as of 11/12/24 to align with xlsx from my bank to ease process of getting transaction data
+
 An R Shiny application that helps users track, analyze, and visualize their financial data.
 
 ## Vision
