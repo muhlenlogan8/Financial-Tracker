@@ -40,4 +40,3 @@ summarizeByMonth <- function(data) {
               Expenses = sum(Amount[Type == "Debit"], na.rm = TRUE)) %>%
     arrange(Month)
 }
-
